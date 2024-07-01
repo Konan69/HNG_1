@@ -1,15 +1,15 @@
 const express = require("express");
-const requestIp = require("request-ip");
 const geoip = require("geoip-lite");
 
 const app = express();
 
-app.use(requestIp.mw());
-
 app.get("/hello", (req, res) => {
   const visitor_name = req.query.visitor_name;
-  const clientIp = req.clientIp; // Access the IP from the middleware
-  console.log(clientIp);
+  const clientIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+
+  const ipv4 = clientIp.split(":").pop();
+
+  console.log(ipv4);
   const geo = geoip.lookup(clientIp); // Get geolocation info
 
   const location = geo ? `${geo.city}, ${geo.country}` : "Unknown";
