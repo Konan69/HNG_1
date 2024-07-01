@@ -2,7 +2,7 @@ import express from "express";
 
 const app = express();
 
-app.get("/hello", (req, res) => {
+app.get("/api/hello", (req, res) => {
   const visitor_name = req.query.visitor_name;
   const clientIp =
     req.headers["x-forwarded-for"] || req.socket.remoteAddress || "";
