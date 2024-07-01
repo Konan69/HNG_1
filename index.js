@@ -1,5 +1,5 @@
 const express = require("express");
-const geoip = require("geoip-lite");
+// const geoip = require("geoip-lite");
 
 const app = express();
 
@@ -10,14 +10,14 @@ app.get("/hello", (req, res) => {
   const ipv4 = clientIp.split(":").pop();
 
   console.log(ipv4);
-  const geo = geoip.lookup(clientIp); // Get geolocation info
+  // const geo = geoip.lookup(ipv4.toString()); // Get geolocation info
 
-  const location = geo ? `${geo.city}, ${geo.country}` : "Unknown";
+  // const location = geo ? `${geo.city}, ${geo.country}` : "Unknown";
 
   res.json({
-    Client_ip: clientIp,
-    location: location,
-    greeting: `Hello ${visitor_name}, the temperature is 30 degrees Celsius in ${location}`,
+    Client_ip: ipv4,
+    location: "location",
+    greeting: `Hello ${visitor_name}, the temperature is 30 degrees Celsius in`,
   });
 });
 
