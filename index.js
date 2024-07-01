@@ -13,7 +13,7 @@ app.get("/hello", (req, res) => {
 
   const location = `${city}, ${country}`;
 
-  res.json({
+  res.send({
     Client_ip: clientIp,
     location: location,
     greeting: `Hello ${visitor_name}, the temperature is 30 degrees Celsius in ${location}`,
